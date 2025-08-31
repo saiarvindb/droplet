@@ -9,7 +9,18 @@
             [
                 "./ssl/droplet.eipie.io/:/etc/nginx/ssl/droplet.eipie.io/:ro",
                 "./conf.d:/etc/nginx/conf.d:ro",
-            ]
+            ],
+            "networks":
+            [
+                "actual_default",
+            ],
         }
+    },
+    "networks":
+    {
+        "actual_default":
+        {
+            "external": true,
+        },
     },
 }
