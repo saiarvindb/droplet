@@ -33,6 +33,10 @@
                     "run": "echo '${{ secrets.DROPLET_CERT_KEY }}' > ./nginx/ssl/droplet.eipie.io/origin.key"
                 },
                 {
+                    "name": "Add to known hosts",
+                    "run": "ssh-keyscan -H ${{ secrets.DROPLET_HOST }} >> ~/.ssh/known_hosts"
+                },
+                {
                     "name": "Copy nginx to VPS",
                     "run": "rsync -avz --delete ./nginx/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_HOST }}:~/nginx/"
                 },
