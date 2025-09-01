@@ -1,17 +1,32 @@
 {
+<<<<<<< HEAD
+    "name": "Deploy to droplet",
+=======
     "name": "Deploy Nginx and Actual",
+>>>>>>> 2af828b (rename yaml to yml)
     "on":
     {
         workflow_dispatch: {},
         "issue_comment":
         {
             "types": ["created"],
+<<<<<<< HEAD
+        },
+=======
         }
+>>>>>>> 2af828b (rename yaml to yml)
     },
     "jobs":
     {
         "deploy":
         {
+<<<<<<< HEAD
+            "if": "github.event_name == 'workflow_dispatch' || (github.event.issue.pull_request != null && contains(github.event.comment.body, '/deploy'))",
+            "runs-on": "ubuntu-latest",
+            "steps": [],
+        },
+    },
+=======
             "if": "github.event.issue.pull_request != null && contains(github.event.comment.body, '/deploy')",
             "runs-on": "ubuntu-latest",
             "steps":
@@ -39,4 +54,5 @@
             ]
         }
     }
+>>>>>>> 2af828b (rename yaml to yml)
 }
