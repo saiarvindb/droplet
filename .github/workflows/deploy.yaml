@@ -1,0 +1,40 @@
+{
+    "name": "Deploy Nginx and Actual",
+    "on":
+    {
+        "push":
+        {
+            "branches": ["dev"]
+        }
+    },
+    "jobs":
+    {
+        "deploy":
+        {
+            "runs-on": "ubuntu-latest",
+            "steps":
+            [
+                {
+                    "name": "Checkout repo",
+                    "uses": "actions/checkout@v3"
+                },
+                {
+                    "name": "Set up SSH",
+                    "uses": "webfactory/ssh-agent@v0.8.1",
+                    "with": 
+                    {
+                        "ssh-private-key": "${{ secrets.DROPLET_SSH_KEY }}"
+                    }
+                },
+                {
+                    "name": "Copy cert key",
+                    "run": "echo '${{ secrets.DROPLET_CERT_KEY }}' > ./nginx/ssl/droplet.eipie.io/origin.key"
+                },
+                {
+                    "name": "Copy nginx to VPS",
+                    "run": "rsync -avz --delete ./nginx/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_HOST }}:~/nginx/"
+                },
+            ]
+        }
+    }
+}
