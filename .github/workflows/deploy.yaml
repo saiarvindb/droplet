@@ -2,15 +2,16 @@
     "name": "Deploy Nginx and Actual",
     "on":
     {
-        "push":
+        "issue_comment":
         {
-            "branches": ["dev"]
+            "types": ["created"],
         }
     },
     "jobs":
     {
         "deploy":
         {
+            "if": "github.event.issue.pull_request != null && contains(github.event.comment.body, '/deploy')",
             "runs-on": "ubuntu-latest",
             "steps":
             [
