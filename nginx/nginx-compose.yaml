@@ -1,0 +1,26 @@
+{
+    "services": 
+    {
+        "proxy": 
+        {
+            "image": "docker.io/library/nginx:latest",
+            "ports": ["8080:80", "8443:443"],
+            "volumes":
+            [
+                "./ssl/droplet.eipie.io/:/etc/nginx/ssl/droplet.eipie.io/:ro",
+                "./conf.d:/etc/nginx/conf.d:ro",
+            ],
+            "networks":
+            [
+                "actual_default",
+            ],
+        }
+    },
+    "networks":
+    {
+        "actual_default":
+        {
+            "external": true,
+        },
+    },
+}
