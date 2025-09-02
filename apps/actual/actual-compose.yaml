@@ -5,6 +5,6 @@
         {
             "image": "docker.io/actualbudget/actual-server:latest",
             "volumes": ["./data:/data"],
-        }
+        },
     },
 }

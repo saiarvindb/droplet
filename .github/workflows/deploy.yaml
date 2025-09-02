@@ -37,6 +37,10 @@
                     "run": "ssh-keyscan -H ${{ secrets.DROPLET_HOST }} >> ~/.ssh/known_hosts",
                 },
                 {
+                    "name": "Copy actual to VPS",
+                    "run": "rsync -avz --delete --exclude='data/' ./apps/actual/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_HOST }}:~/apps/actual/",
+                },
+                {
                     "name": "Copy nginx to VPS",
                     "run": "rsync -avz --delete ./nginx/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_HOST }}:~/nginx/",
                 },
